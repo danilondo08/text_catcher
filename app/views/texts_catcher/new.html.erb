@@ -1,0 +1,10 @@
+<div class="container">
+  <p> Asegúrate de enviar una foto legible de la incapacidad. Para que sea legible debe haber buena luz, la foto debe incluir todo el papel y debe estar enfocada. Para enfocar, aleja y acerca el celular hasta que se vea bien 🚨
+  </p>
+</div>
+  <%= form_with model: @user_images, url: texts_catcher_create_path do |f| %>
+    <%= f.file_field :photo, data: {img_id: 'photo'}, required: true, accept: 'image/jpeg, image/png, image/gif, image/bmp' %>
+    <%= f.submit 'Enviar', class: 'button is-primary' %>
+  <% end %>
+
+      

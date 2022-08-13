@@ -12,7 +12,8 @@ default: &default
 development:
   <<: *default
   database: text_catcher
-  usename: elmer
+  host: localhost
+  username: elmer
   password: root
 
 # Warning: The database defined as "test" will be erased and
@@ -21,11 +22,11 @@ development:
 test:
   <<: *default
   database: text_catcher
-  usename: elmer
+  host: localhost
+  username: elmer
   password: root
 
 production:
   <<: *default
-  database: text_catcher
-  usename: elmer
-  password: root
+  database: text_catcher_production
+  url: <%= ENV['DATABASE_URL'] %>

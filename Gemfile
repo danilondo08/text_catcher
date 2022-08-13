@@ -7,6 +7,7 @@ ruby '3.1.2'
 gem 'rails', '~> 7.0.3.1'
 gem 'devise'
 gem 'psych', '< 4'
+gem 'devise-token_authenticatable'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

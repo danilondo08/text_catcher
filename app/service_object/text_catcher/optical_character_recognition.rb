@@ -30,7 +30,8 @@ module TextCatcher
 
 
     def send_character_recognition_request
-      url = 'http://192.168.123.109:3000/api/v1/imageup'
+      # url = 'http://192.168.123.109:3000/api/v1/imageup'
+      url = 'https://afternoon-basin-65212.herokuapp.com/api/v1/imageup/'
       image_file = photo.tempfile.open.read.force_encoding(Encoding::UTF_8) 
       data = Base64.encode64(image_file)
       result = ::HTTParty.post(url, 

@@ -1,7 +1,9 @@
-<% if notice %>
-  <%= render 'layouts/notices' %>
-<% elsif alert %>
-  <%= render 'layouts/alerts' %>
-<% else %>
-  <%= render 'layouts/flash' %>
+<% flash.each do |type, message|%>
+  <% if type.to_sym == :notice %>
+    <%= render 'layouts/notices', notice: message %>
+  <% elsif type.to_sym == :alert %>
+    <%= render 'layouts/alerts', alert: message %>
+  <% else %>
+    <%= render 'layouts/flash', message: message %>
+  <% end %>
 <% end %>

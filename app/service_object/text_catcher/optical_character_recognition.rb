@@ -20,7 +20,6 @@ module TextCatcher
     def perform
       if self.valid?
         request = send_character_recognition_request
-        return request
      else
         return false
       end
@@ -38,18 +37,20 @@ module TextCatcher
         :body => { :message => "data:#{photo.content_type};base64,#{data}"
                  }.to_json,
         :headers => { 'Content-Type' => 'application/json' } )
-      image_text = result["message"]
+      response = result["message"]
+      puts response
+      puts '_'*100
       case result.code
         when 201
           puts "All good!"
-          image = UserImage.create(user_id: user_id, text: image_text, photo: photo)
+          image = UserImage.create(user_id: user_id, text: response, photo: photo)
           return image
         when 404
           puts "not found!"
-          return false
+          return response
         when 500...600
           puts "ZOMG ERROR #{result.code}"
-          return false
+          return response
       end
       # raise
       # req_body = {message: data}

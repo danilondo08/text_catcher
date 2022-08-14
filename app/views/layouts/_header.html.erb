@@ -3,14 +3,19 @@
   <% else %>
     <div class="flex justify-between px-6 items-center  py-6 md:justify-start md:space-x-10">
       <div class="flex justify-start lg:w-0 lg:flex-1">
-        <%= link_to "upload new image", new_texts_catcher_path, class:"text-5xl text-center text-white" %>
-      </div>
-      <div class="flex justify-start lg:w-0 lg:flex-1">
-        <%= link_to "My history", texts_catcher_index_path, class:"text-5xl  text-center text-white" %>
+        <% if current_user.present? %>
+          <%= link_to "Upload new image", new_texts_catcher_path, class:"text-5xl text-center text-white" %>
+          </div>
+          <div class="flex justify-start lg:w-0 lg:flex-1">
+            <%= link_to "Home", all_user_images_path, class:"text-5xl text-center text-white" %>
+          </div>
+          <div class="flex justify-start lg:w-0 lg:flex-1">
+            <%= link_to "My history", texts_catcher_index_path, class:"text-5xl  text-center text-white" %>
+        <% end %>
       </div>
       <% if user_signed_in? %>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <%= link_to "Log out", destroy_user_session_path, class:"ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white " %>
+          <a href=<%= destroy_user_session_path %> class="text-5xl text-center text-white"> Log out</a>
         </div>
       <% else %>
       <% end %>

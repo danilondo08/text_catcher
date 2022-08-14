@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   get 'home/index'
-  root 'home#index'
+  # root 'home#index'
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get 'texts_catcher/new'
-  post 'texts_catcher/create'
+  root 'texts_catcher#new' 
+  resources :texts_catcher, only: [:show, :create, :new, :index]
 end

@@ -2,6 +2,10 @@ class TextsCatcherController < ApplicationController
   before_action :authenticate_user!
   # before_action :correct_user, only: [:new, :create]
 
+  def index
+    @user_images = current_user.user_images.all
+  end
+
   def new
     user_images = UserImage.new
   end

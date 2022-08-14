@@ -1,14 +1,16 @@
-<div class="mx-auto px-4 sm:px-6">
+<div class="mx-auto px-4 sm:px-6" style="background-color: #0095ff">
   <% if home_index? %>
   <% else %>
-    <div class="flex justify-between px-6 items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+    <div class="flex justify-between px-6 items-center  py-6 md:justify-start md:space-x-10">
       <div class="flex justify-start lg:w-0 lg:flex-1">
-        <%= link_to "tc", home_index_path, class:"text-5xl font-mono font-bold text-center italic text-blue-600" %>
+        <%= link_to "upload new image", new_texts_catcher_path, class:"text-5xl text-center text-white" %>
       </div>
-
+      <div class="flex justify-start lg:w-0 lg:flex-1">
+        <%= link_to "My history", texts_catcher_index_path, class:"text-5xl  text-center text-white" %>
+      </div>
       <% if user_signed_in? %>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <%= link_to "Log out", destroy_user_session_path, class:"ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700" %>
+          <%= link_to "Log out", destroy_user_session_path, class:"ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white " %>
         </div>
       <% else %>
       <% end %>

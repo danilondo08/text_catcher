@@ -1,29 +1,49 @@
-<h2>Sign up</h2>
+<section class="h-screen">
+  <div class="container px-6 py-12 mx-auto h-full">
+    <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+      <div class="md:w-8/12 lg:w-6/12 mb-8 md:mb-0">
+        <img
+          src="https://img.freepik.com/free-vector/sign-page-abstract-concept-illustration_335657-2242.jpg?w=1380&t=st=1660434748~exp=1660435348~hmac=74372d31e245e0d71e19929753db495b542bd49f9b503c0ef12a494f422184ae"
+          class="w-full"
+          alt="Phone image"
+          />
+      </div>
+      <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <h1 class="text-8xl font-mono tracking-tighter font-bold text-center italic text-blue-600 mb-12">
+          Text Catcher
+        </h1>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <form>
+            <!-- Email input -->
+            <div class="mb-6">
+              <%= f.email_field :email, autofocus: true, placeholder: "Email address", class: "form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
+            </div>
+
+            <!-- Password input -->
+            <div class="mb-6">
+              <% if @minimum_password_length %>
+                <%= f.password_field :password, placeholder: "Password: #{@minimum_password_length} minimum characters", class: "form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
+              <% else %>
+                <%= f.password_field :password, placeholder: "Password", class: "form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
+              <% end %>
+            </div>
+
+            <!-- Password input -->
+            <div class="mb-6">
+              <%= f.password_field :password, placeholder: "Password confirmation", class: "form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
+            </div>
+
+            <!-- Submit button -->
+            <%= f.submit "Sign up", class: "inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full mb-4" %>
+
+          </form>
+        <% end %>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>

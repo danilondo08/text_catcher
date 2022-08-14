@@ -1,0 +1,7 @@
+<% if notice %>
+  <%= render 'layouts/notices' %>
+<% elsif alert %>
+  <%= render 'layouts/alerts' %>
+<% else %>
+  <%= render 'layouts/flash' %>
+<% end %>

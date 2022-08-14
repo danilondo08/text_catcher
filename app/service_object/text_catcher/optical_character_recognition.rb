@@ -1,24 +1,26 @@
 module TextCatcher
   class OpticalCharacterRecognition
     include ActiveModel::Model
+    include ActiveModel::Validations
     require 'httparty'
     # require 'net/http'
     # require 'base64'
 
 
-    attr_accessor :photo
+    attr_accessor :photo, :user_id
 
-    validates_presence_of :photo
+    validates_presence_of :photo, :user_id
 
     def initialize(args)
-      # @user_id = args.fetch(:user_id, nil)
+      @user_id = args.fetch(:user_id, nil)
       @photo = args.fetch(:photo, nil)
       @authorization = 'Token'
     end
 
     def perform
       if self.valid?
-        send_character_recognition_request
+        request = send_character_recognition_request
+        return request
      else
         return false
       end
@@ -35,8 +37,19 @@ module TextCatcher
         :body => { :message => "data:#{photo.content_type};base64,#{data}"
                  }.to_json,
         :headers => { 'Content-Type' => 'application/json' } )
-      
-      puts data
+      image_text = result["message"]
+      case result.code
+        when 201
+          puts "All good!"
+          image = UserImage.create(user_id: user_id, text: image_text, photo: photo)
+          return image
+        when 404
+          puts "not found!"
+          return false
+        when 500...600
+          puts "ZOMG ERROR #{result.code}"
+          return false
+      end
       # raise
       # req_body = {message: data}
       # resp, rdata = https.post(uri.path, data.to_json, headers)

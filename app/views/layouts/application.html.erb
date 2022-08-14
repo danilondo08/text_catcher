@@ -12,7 +12,11 @@
   </head>
 
   <body>
-    <%= render 'layouts/notifications' %>
-    <%= yield %>
+    <div class="box">
+      <header class="row header"><%= render 'layouts/header' %></header>
+      <section class="row header"><%= render 'layouts/notifications' %></section>
+      <section class="row content"><%= yield %></section>
+      <footer><%= render 'layouts/footer' %></footer>
+    </div>
   </body>
 </html>
